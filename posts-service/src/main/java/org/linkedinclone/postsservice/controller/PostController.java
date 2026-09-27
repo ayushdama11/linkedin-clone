@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/core")
 public class PostController {   // the request mapping will be /posts/core
 
-    private PostService postService;
+    private final PostService postService;
 
     @PostMapping
     public ResponseEntity<PostDto> createPost(@RequestBody PostCreateRequestDto postCreateRequestDto, HttpServletRequest httpServletRequest) {
@@ -26,7 +26,7 @@ public class PostController {   // the request mapping will be /posts/core
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long postId) {
-        PostDto postDto = postService.findPostById(postId);
+        PostDto postDto = postService.getPostById(postId);
         return ResponseEntity.ok(postDto);
     }
 
